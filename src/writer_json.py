@@ -57,6 +57,13 @@ def write_weather(location, weather_js, conn):
 
     # write measurement to tdengine
     conn.query(f"insert into weather.{no_whitepsace_location} values ('{weather_js['last_updated']}', {weather_js['temp_c']}, {weather_js['temp_f']}, {weather_js['wind_mph']}, {weather_js['wind_kph']})")     
+
+    conn.insert({'last_updated': weather_js['last_updated'],
+    'temp_c': weather_js['temp_c'],
+    'temp_f': weather_js['temp_f'],
+    'wind_mph': weather_js['wind_mph'],
+    'wind_kph': weather_js['wind_kph']})
+
     
 # closes the tdengine connection
 def close_con(conn):
